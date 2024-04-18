@@ -8,7 +8,6 @@ const productsRoutes = Router();
 const productsController = new ProductsController();
 
 productsRoutes.use(ensureAuthenticated);
-productsRoutes.use()
 
 productsRoutes.get("/", productsController.index);
 productsRoutes.post("/", verifyUserAuthorization("admin"), productsController.create);

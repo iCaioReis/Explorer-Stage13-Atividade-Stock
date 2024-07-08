@@ -8,6 +8,7 @@ import { CustomerRoutes } from './customer.routes';
 import { SaleRoutes } from './sale.routes';
 import { AuthRoutes } from './auth.routes';
 import { useEffect } from 'react';
+import { api } from '../services/api';
 
 export function Routes() {
   const { user, signOut } = useAuth();
@@ -16,7 +17,10 @@ export function Routes() {
     api
       .get('/users/validated')
       .catch((error) => {
-        signOut()
+        if(error.response?.status === 401){
+          signOut();
+        }
+        
     })
   })
 
